@@ -1,9 +1,11 @@
-name: Python CI Pipeline
+name: Python Test Workflow
 
 on:
   pull_request:
+  push:
 
 jobs:
+
   test:
 
     runs-on: ubuntu-latest
@@ -17,12 +19,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          run: python --version
+
+      - name: Install pytest
+        run: pip install pytest
 
       - name: Run Tests
-        run: python -m pytest
-
-      - name: Verify Python
+        run: pytest
 
 
       
